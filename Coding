@@ -1,0 +1,28 @@
+import numpy as np
+a = np.random.randint(0,10,[10,10]) #random matrix
+a
+b = np.array([[1,0,0],[0,1,0],[0,0,1]])
+b
+def convimg(oimg,filt): #oimg = รูปใหญ่ ในที่นี้ คือ a, filt = รูปเล็กในที่นี้ คือ b
+  #return filt.shape #หาขนาดรูปเล็ก
+  fh, fw = filt.shape
+  ih, iw = oimg.shape
+  newimg = []
+  for j in range(ih-fh+1):
+    newrow = []
+    for i in range(iw-fw+1):
+      #print(oimg[0:fh,i:i+fw])
+      simg = oimg[j:j+fh,i:i+fw]
+      scov = (simg*filt).sum()
+      #print(simg)
+      #print(filt)
+      #print(scov)
+      newrow.append(scov)
+    newimg.append(newrow)
+      #input()
+  return np.array(newimg)
+
+  #return fw, fh # fw =filt width, fh = filt height หาขนาดความกว้างและความสูงของ filt
+  #return oimg,filt
+  
+  convimg(a,b)
